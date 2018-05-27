@@ -16,23 +16,21 @@ For a specific Publisher it should return the list of shops selling at least one
 
 Example response:
 ```json
-{ 
-  shops:[
-   {
-     “id”: 1,
-     “name”: “Amazon”,
-     “books_sold_count”: 10,
-     “books_in_stock”: [
-       {
-         “id”: 2,
-         “title”: “Yiddish songs”,
-         “copies_in_stock”: 3
-       },
-       … 
-     ]
-   },
-   … 
- ]
+{
+  "shops": [
+    {
+      "id": 1,
+      "name": "Amazon",
+      "books_sold_count": 10,
+      "books_in_stock": [
+        {
+          "id": 2,
+          "title": "Yiddish songs",
+          "copies_in_stock": 3
+        }
+      ]
+    }
+  ]
 }
 ```
 
