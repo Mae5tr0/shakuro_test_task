@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  get 'publisher/shops'
-  post 'shop/sold_out'
+  get 'publishers/:id/shops', to: 'publisher#shops'
+  post 'shops/:id/sold_out', to: 'shop#sold_out'
 end

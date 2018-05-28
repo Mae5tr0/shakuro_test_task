@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_27_175807) do
+ActiveRecord::Schema.define(version: 2018_05_28_083456) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -18,13 +18,6 @@ ActiveRecord::Schema.define(version: 2018_05_27_175807) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["publisher_id"], name: "index_books_on_publisher_id"
-  end
-
-  create_table "books_shops", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "shop_id", null: false
-    t.bigint "book_id", null: false
-    t.integer "amount"
-    t.index ["shop_id", "book_id"], name: "index_books_shops_on_shop_id_and_book_id"
   end
 
   create_table "publishers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -46,6 +39,16 @@ ActiveRecord::Schema.define(version: 2018_05_27_175807) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "shop_id"
+    t.bigint "book_id"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_stocks_on_book_id"
+    t.index ["shop_id"], name: "index_stocks_on_shop_id"
   end
 
 end
