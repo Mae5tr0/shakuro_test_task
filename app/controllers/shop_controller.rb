@@ -1,7 +1,9 @@
 class ShopController < ApplicationController
   def sold_out
-    publisher = Shop.find(params[:id])
+    shop = Shop.find(params[:id])
+    stock = shop.stock.where(book_id: params[:ids])
+    result = stock.update_all(amount: 0)
 
-    render json: publisher, status: :ok
+    render json: { count: result }, status: :ok
   end
 end

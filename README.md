@@ -52,7 +52,7 @@ rails db:seed
 
 We have two main strategies here - load more data from DB and process it in ruby or create more complicated SQL for
 receiving only what we want. I choose second way with more complicated queries. Advantages: more effective way 
-for loading and processing data, disadvantages - complicated SQL and more difficult to support.  
+for loading and processing data, disadvantages - complicated SQL is more difficult to support, db specific  
 
 
 

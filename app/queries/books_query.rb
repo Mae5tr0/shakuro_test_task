@@ -6,6 +6,9 @@ class BooksQuery
   end
 
   def with_amount_for_publisher(publisher)
-    relation.select('b.*, stocks.amount').joins(:stock).where(publisher: publisher.id)
+    relation
+        .select('books.*, stocks.amount, stocks.shop_id')
+        .joins(:stock)
+        .where(publisher: publisher.id)
   end
 end

@@ -1,21 +1,26 @@
 class PublisherShopsSerializer < ActiveModel::Serializer
-  has_many :shops do
-    object.shops
+  has_many :shops
+
+  def shops
+    instance_options[:shops]
   end
 
   class ShopSerializer < ActiveModel::Serializer
     attributes :id, :name
 
     attribute :books_sold_count do
-      object.sold_count
+      object.sold_count || 0
     end
 
-    attribute :books_in_stock do
-      # merge logic
+    has_many :book_in_stock
+
+    def book_in_stock
+      instance_options[:books].select do |book|
+        book.shop_id = object.id
+      end
     end
 
-
-    class BooksSerializer < ActiveModel::Serializer
+    class BookSerializer < ActiveModel::Serializer
       attributes :id, :title
 
       attribute :copies_in_stock do
