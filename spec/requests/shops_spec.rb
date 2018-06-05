@@ -1,4 +1,5 @@
 RSpec.describe 'Shop API', type: :request do
+  # rubocop:disable Naming/VariableNumber
   describe 'POST /shops/:id/sold_out' do
     it 'mark specific books in shop as sold out' do
       book_1 = create(:book, title: 'Book 1')
@@ -15,10 +16,10 @@ RSpec.describe 'Shop API', type: :request do
       stock_2_2 = create(:stock, shop: shop_2, book: book_2, amount: 3)
       stock_2_3 = create(:stock, shop: shop_2, book: book_3, amount: 19)
 
-      post "/shops/#{shop_1.id}/sold_out", params: {ids: [book_1.id, book_3.id]}
+      post "/shops/#{shop_1.id}/sold_out", params: { ids: [book_1.id, book_3.id] }
 
       expect(response).to have_http_status(200)
-      expect(json).to eq({ count: 2 })
+      expect(json).to eq(count: 2)
 
       expect(stock_1_1.reload.amount).to eq(0)
       expect(stock_1_2.reload.amount).to eq(5)
@@ -29,7 +30,7 @@ RSpec.describe 'Shop API', type: :request do
     end
 
     it 'correct process invalid shop id' do
-      post "/shops/unknown/sold_out", params: {ids: []}
+      post '/shops/unknown/sold_out', params: { ids: [] }
 
       expect(response).to have_http_status(404)
       expect(response.body).to match(/Couldn't find Shop/)
@@ -40,12 +41,13 @@ RSpec.describe 'Shop API', type: :request do
       shop = create(:shop, name: 'Shop 1')
       stock = create(:stock, shop: shop, book: book, amount: 4)
 
-      post "/shops/#{shop.id}/sold_out", params: {ids: ['invalid']}
+      post "/shops/#{shop.id}/sold_out", params: { ids: ['invalid'] }
 
       expect(response).to have_http_status(200)
-      expect(json).to eq({ count: 0 })
+      expect(json).to eq(count: 0)
 
       expect(stock).to eq(4)
     end
   end
+  # rubocop:enable Naming/VariableNumber
 end

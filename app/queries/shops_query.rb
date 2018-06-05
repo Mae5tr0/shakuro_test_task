@@ -1,5 +1,5 @@
 class ShopsQuery
-  # @TODO docs
+  # rubocop:disable Metrics/MethodLength
   def self.all_shops_ordered_by_sold_count(publisher)
     query = <<~SQL
       SELECT sh.*,
@@ -25,4 +25,5 @@ class ShopsQuery
 
     Shop.find_by_sql(query)
   end
+  # rubocop:enable Metrics/MethodLength
 end

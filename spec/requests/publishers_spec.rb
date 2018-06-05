@@ -1,9 +1,9 @@
 RSpec.describe 'Publisher API', type: :request do
+  # rubocop:disable Naming/VariableNumber
   describe 'GET /publishers/:id/shops' do
-
     # For a specific Publisher it should return the list of shops selling at
     # least one book of that publisher. Shops should be ordered by the number
-    # of books sold. Each shop should include the list of Publisher’s books
+    # of books sold. Each shop should include the list of Publisher's books
     # that are currently in stock.
     it 'returns shops ' do
       publisher_1 = create(:publisher)
@@ -32,7 +32,7 @@ RSpec.describe 'Publisher API', type: :request do
       get "/publishers/#{publisher_1.id}/shops"
 
       expect(response).to have_http_status(200)
-      expect(json).to eq({
+      expect(json).to eq(
         "shops": [
           {
             "id": 1,
@@ -64,7 +64,7 @@ RSpec.describe 'Publisher API', type: :request do
             ]
           }
         ]
-      })
+      )
     end
 
     it 'returns status code 404' do
@@ -74,4 +74,5 @@ RSpec.describe 'Publisher API', type: :request do
       expect(response.body).to match(/Couldn't find Publisher/)
     end
   end
+  # rubocop:enable Naming/VariableNumber
 end

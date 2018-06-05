@@ -15,6 +15,7 @@ def create_list(*attr)
 end
 
 # Populate DB with test data (for local development)
+# rubocop:disable Naming/VariableNumber
 publisher_1 = create(:publisher)
 book_1 = create(:book, publisher: publisher_1)
 book_2 = create(:book, publisher: publisher_1)
@@ -41,3 +42,5 @@ create_list(:stock, 10)
 create_list(:book, 20)
 create_list(:shop, 20)
 create_list(:publisher, 20)
+# rubocop:enable Naming/VariableNumber
+#

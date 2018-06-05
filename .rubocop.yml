@@ -1,0 +1,29 @@
+AllCops:
+  Exclude:
+    - '**/schema.rb'
+    - 'db/migrate/**/*'
+    - 'bin/**/*'
+
+  TargetRubyVersion: 2.5.1
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false

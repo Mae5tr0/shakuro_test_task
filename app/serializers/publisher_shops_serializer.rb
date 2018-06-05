@@ -16,7 +16,7 @@ class PublisherShopsSerializer < ActiveModel::Serializer
 
     def books_in_stock
       instance_options[:books].select do |book|
-        book.shop_id == object.id && book.amount > 0
+        book.shop_id == object.id && book.amount.positive?
       end
     end
 
