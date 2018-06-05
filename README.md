@@ -65,7 +65,6 @@ for loading and processing data, disadvantages - complicated SQL is more difficu
 * DB schema
 * Implementation notes
     * about optimizations
-* Tests
 * Rubocop
 * Final review 
 
