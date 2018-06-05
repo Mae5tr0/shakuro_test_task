@@ -46,7 +46,20 @@ RSpec.describe 'Shop API', type: :request do
       expect(response).to have_http_status(200)
       expect(json).to eq(count: 0)
 
-      expect(stock).to eq(4)
+      expect(stock.reload.amount).to eq(4)
+    end
+
+    it 'does not update record for empty load' do
+      book = create(:book, title: 'Book 1')
+      shop = create(:shop, name: 'Shop 1')
+      stock = create(:stock, shop: shop, book: book, amount: 4)
+
+      post "/shops/#{shop.id}/sold_out", params: { ids: [] }
+
+      expect(response).to have_http_status(200)
+      expect(json).to eq(count: 0)
+
+      expect(stock.reload.amount).to eq(4)
     end
   end
   # rubocop:enable Naming/VariableNumber

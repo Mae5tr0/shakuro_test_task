@@ -92,15 +92,9 @@ GET publishers/:id/shops
 
 Endpoint 2
 ```http
-POST shops/:id/sold_out with json in body { "ids": ["book_id_1", "book_id_2", "...etc"] }
+POST shops/:id/sold_out with json in body {"ids": ["book_id_1", "book_id_2", "...etc"]}
 ```
 
 ## DB schema
 
 ![Database schema](https://raw.githubusercontent.com/Mae5tr0/shakuro_test_task/master/docs/shakuro_db_schema.png)
-
-## TODO
- 
-* Ruby docs
-* Run and check all commands
-* Final review 

@@ -1,4 +1,13 @@
 class ShopsQuery
+  # Receive all shops which selling at least one book for specific publisher.
+  # Shops ordered by the number of books sold.
+  #
+  # @param publisher [Publisher] the publisher model
+  # @return [Shop] array with shops, every shop contained additional field `sold_count`
+  #
+  # @example
+  #  ShopsQuery.all_shops_ordered_by_sold_count(Publisher.first) #=> [shop1, shop2]
+  #
   # rubocop:disable Metrics/MethodLength
   def self.all_shops_ordered_by_sold_count(publisher)
     query = <<~SQL
