@@ -19,6 +19,7 @@ RSpec.describe 'Publisher API', type: :request do
       create(:stock, shop: shop_1, book: book_2, amount: 5)
       create(:stock, shop: shop_1, book: book_3, amount: 11)
 
+      create(:stock, shop: shop_2, book: book_1, amount: 0)
       create(:stock, shop: shop_2, book: book_2, amount: 3)
       create(:stock, shop: shop_2, book: book_3, amount: 19)
 
@@ -33,35 +34,35 @@ RSpec.describe 'Publisher API', type: :request do
       expect(response).to have_http_status(200)
       expect(json).to eq({
         "shops": [
-           {
-               "id": 2,
-               "name": 'Shop 2',
-               "books_sold_count": 7,
-               "books_in_stock": [
-                   {
-                       "id": 2,
-                       "title": 'Book 2',
-                       "copies_in_stock": 3
-                   }
-               ]
-           },
-           {
-               "id": 1,
-               "name": 'Shop 1',
-               "books_sold_count": 0,
-               "books_in_stock": [
-                   {
-                       "id": 1,
-                       "title": 'Book 1',
-                       "copies_in_stock": 7
-                   },
-                   {
-                       "id": 2,
-                       "title": 'Book 2',
-                       "copies_in_stock": 5
-                   }
-               ]
-           }
+          {
+            "id": 1,
+            "name": 'Shop 1',
+            "books_sold_count": 0,
+            "books_in_stock": [
+              {
+                "id": 1,
+                "title": 'Book 1',
+                "copies_in_stock": 7
+              },
+              {
+                "id": 2,
+                "title": 'Book 2',
+                "copies_in_stock": 5
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "name": 'Shop 2',
+            "books_sold_count": 7,
+            "books_in_stock": [
+              {
+                "id": 2,
+                "title": 'Book 2',
+                "copies_in_stock": 3
+              }
+            ]
+          }
         ]
       })
     end

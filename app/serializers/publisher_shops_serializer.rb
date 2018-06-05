@@ -12,11 +12,11 @@ class PublisherShopsSerializer < ActiveModel::Serializer
       object.sold_count || 0
     end
 
-    has_many :book_in_stock
+    has_many :books_in_stock
 
-    def book_in_stock
+    def books_in_stock
       instance_options[:books].select do |book|
-        book.shop_id = object.id
+        book.shop_id == object.id && book.amount > 0
       end
     end
 
